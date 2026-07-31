@@ -3,7 +3,7 @@ name: openproject
 services:
 
   app:
-    image: openproject/openproject:17
+    image: openproject/openproject:${OPENPROJECT_V}
     restart: always
     #volumes:
     #  - openproject_data:/var/www/html:z
@@ -15,7 +15,7 @@ services:
       - OPENPROJECT_DEFAULT__LANGUAGE=de
     ports:
       - ${WEB_HTTP_PORT}:80
-      #- ${WEB_HTTPS_PORT}:443
+      - ${WEB_HTTPS_PORT}:443
 
 
 volumes:
