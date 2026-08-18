@@ -5,18 +5,19 @@ services:
   app:
     image: openproject/openproject:${OPENPROJECT_V}
     restart: always
-    #volumes:
-    #  - openproject_data:/var/www/html:z
+    volumes:
+      - openproject_pgdata:/var/openproject/pgdata
+      - openproject_assets:/var/openproject/assets 
     environment:
       - TZ=${DEFAULT_TIME_ZONE}
       - SECRET_KEY_BASE=${OPENPROJECT_SECRET_KEY_BASE}
       - OPENPROJECT_HOST__NAME=localhost:${WEB_HTTP_PORT}
-      - OPENPROJECT_HTTPS=false
+      - OPENPROJECT_HTTPS=${OPENPROJECT_HTTPS}
       - OPENPROJECT_DEFAULT__LANGUAGE=de
     ports:
       - ${WEB_HTTP_PORT}:80
-      - ${WEB_HTTPS_PORT}:443
 
 
 volumes:
-  openproject_data:
+  openproject_pgdata:
+  openproject_assets:
